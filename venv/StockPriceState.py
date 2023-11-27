@@ -1,5 +1,5 @@
 import requests
-from credentials import AlphaVantage_API_key
+from Credentials import AlphaVantage_API_key
 
 
 def pricechange(STOCK_NAME, COMPANY_NAME):
@@ -8,7 +8,6 @@ def pricechange(STOCK_NAME, COMPANY_NAME):
     between yesterday and the day before yesterday
     '''
     STOCK_ENDPOINT = "https://www.alphavantage.co/query"
-
 
     # Get yesterday's closing stock price
     stock_params = {
