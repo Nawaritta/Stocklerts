@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+        {% include 'header.html' %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('../static/assets/img/home-bg.gif')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1 style="color: #82EEFD; font-size: 50px;"> Stock prices alerts </h1>
+                            <span class="subheading" style="color:orange"><b>News Updates that Move as Fast as Your Ambitions</b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                            <h2 class="post-title">Make your choice</h2>
+                        <p class="post-meta">enter the stock symbol or name you're interested in,
+                            or if you're unsure, you can head over to the <a href="https://www.nasdaq.com/market-activity/stocks/screener">
+                                Nasdaq website</a> to explore and choose from the available stocks.</p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <h2 class="post-title">Real-Time Alerts for Your Stock Portfolio</h2>
+                        <p class="post-meta">
+                            Receive real-time alerts with our alert system. You will get an email notification whenever a significant change
+                            occurs in the price of the stock you are following. Our timely alerts ensure that you never miss important
+                            developments, empowering you to make informed decisions about your investments.
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <h2 class="post-title">Stay Informed with Timely News Updates</h2>
+                        <p class="post-meta">
+                            Receive the latest news articles related to the company whose stock you are following.
+                            This information can help you understand the factors influencing price changes.
+
+                        </p>
+                    </div>
+                    <!-- Divider-->
+
+                    <hr class="my-4" />
+                    <!-- Pager-->
+                    {% if not logged_in: %}
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{{ url_for('register') }}">Join Us →</a></div>
+                   {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+            {% include 'footer.html' %}
+            <!-- Bootstrap core JS-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Core theme JS-->
+            <script src="{{ url_for('static', filename='/js/scripts.js') }}"></script>
+    </body>
+</html>
