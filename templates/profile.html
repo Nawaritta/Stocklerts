@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "header.html" %}
+       <!-- Page Header-->
+        <header>
+            <div class="masthead" style="background-image: url('../static/assets/img/profile-bg.jpg')">
+                <div style="height: 80px" class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div  class="page-heading">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+    <div class="container">
+          <h2 class="title" style="padding-bottom: 50px;">Welcome, {{name}}!</h2>
+
+        <!-- messages flashed-->
+        <div style="padding: 20px 80px">
+         {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <h3 style="color: #01796F; text-align: center; font-family: 'Helvetica'">{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+        <!-------->
+          <!--Make a GET request to the /download path-->
+          <div style="padding-left: 80px; padding-bottom: 200px">
+              <p><b>Please enter the stock information:<b></b></p>
+              <form autocomplete="off" style="padding-left: 90px" action="{{ url_for('profile') }}" method="post">
+                    <div style="margin-bottom: 30px; padding: 0px 20px"><input type="text" name="stock" placeholder="Stock name" required="required" />
+                    <input type="text" name="company" placeholder="Company name" required="required" />
+                    <button type="submit" class="btn btn-primary btn-block btn-large" style="margin-left: 30px">Submit</button></div>
+              </form>
+          </div>
+
+    </div>
+
+  {% include "footer.html" %}
+</html>
+
