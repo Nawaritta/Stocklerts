@@ -10807,3 +10807,14 @@ color: green;
   margin-bottom: 40px;
   margin-left: 350px;
 }
+
+.divspace
+{
+padding: 10px;
+}
+
+.image
+{
+height: 40px;
+width: 40px;
+}
