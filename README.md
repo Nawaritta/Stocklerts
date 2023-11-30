@@ -1,7 +1,7 @@
 # Stocklerts
 
 ## The context
-![](../static/assets/img/about-bg.jpg)
+![](./static/assets/img/about-bg.jpg)
 
 ## Project Overview:
 
