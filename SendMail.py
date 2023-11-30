@@ -31,7 +31,7 @@ def emailsubject(PRICE_CHANGE, FLUCTUATION_SET = 0.2):
     return EmailSubject
 
 
-def emailbody(EmailSubject):
+def emailbody(EmailSubject, client_name):
     '''
     Get News if the fluctuation percentage is greater than the percentage set by the client
     https://newsapi.org/
@@ -46,7 +46,7 @@ def emailbody(EmailSubject):
     <title>Email Template</title>
 </head>
 <body style="font-family: 'Times New Roman', sans-serif; font-size: 16px; line-height: 1.6; color: #000; margin: 70px; margin-right: 70px;">
-    <p style="margin-bottom: 40px; font-weight: bold; color: #000;">Dear client_name,</p>
+    <p style="margin-bottom: 40px; font-weight: bold; color: #000;">Dear {client_name},</p>
     <p style="margin-bottom: 20px; color: #000;">
         We trust this message finds you well. We are writing to inform you of a significant development regarding the stock market activity
         you have been monitoring closely through our platform.  Notably, {EmailSubject} compared to yesterday's closing price.
