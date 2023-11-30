@@ -1,7 +1,7 @@
 # Stocklerts
 
 
-![](http://stocklerts.tech:5500/)
+[Stocklerts website](http://stocklerts.tech:5500/)
 =================================
 
 ## The context
