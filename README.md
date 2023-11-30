@@ -1,7 +1,11 @@
 # Stocklerts
 
+
+![](http://stocklerts.tech:5500/)
+=================================
+
 ## The context
-![](./static/assets/img/about-bg.jpg)
+![](./static/assets/img/readme-1.jpg)
 
 ## Project Overview:
 
@@ -21,3 +25,4 @@ To ensure that users receive timely and pertinent information for making informe
 
 
 ## Author
+Nora BEN HADDOU - [Github](https://github.com/Nawaritta) / [Twitter](https://twitter.com/NoraBH7)
