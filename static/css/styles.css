@@ -3653,7 +3653,7 @@ textarea.form-control-lg {
   --bs-navbar-active-color: rgba(0, 0, 0, 0.9);
   --bs-navbar-brand-padding-y: 0.3125rem;
   --bs-navbar-brand-margin-end: 1rem;
-  --bs-navbar-brand-font-size: 1.25rem;
+  --bs-navbar-brand-font-size: 1rem;
   --bs-navbar-brand-color: rgba(0, 0, 0, 0.9);
   --bs-navbar-brand-hover-color: rgba(0, 0, 0, 0.9);
   --bs-navbar-nav-link-padding-x: 0.5rem;
@@ -10586,13 +10586,14 @@ blockquote {
 }
 
 #mainNav {
+
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1030;
   border-bottom: 1px solid #dee2e6;
-  background-color: #fff;
+  background-color: blue;
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 #mainNav .navbar-brand {
@@ -10672,10 +10673,12 @@ header.masthead {
   margin-bottom: 3rem;
   padding-top: calc(8rem + 57px);
   padding-bottom: 8rem;
-  background: no-repeat center center;
-  background-color: #6c757d;
-  background-size: cover;
+  background: no-repeat bottom center;
+  background-color: #172a53;
+  background-size: 100% 86%;
   background-attachment: scroll;
+  box-shadow: 0 0 0 4px #6492e1, 0 0 0 13px #e6e6e6;
+
 }
 header.masthead:before {
   content: "";
@@ -10684,8 +10687,8 @@ header.masthead:before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #212529;
-  opacity: 0.5;
+  background-color: #000033;
+  opacity: 0.3;
 }
 
 header.masthead .page-heading,
@@ -10697,6 +10700,7 @@ header.masthead .page-heading,
 header.masthead .site-heading {
   text-align: center;
 }
+
 header.masthead .page-heading h1, header.masthead .page-heading .h1,
 header.masthead .site-heading h1,
 header.masthead .site-heading .h1 {
