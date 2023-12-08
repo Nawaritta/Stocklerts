@@ -1,8 +1,10 @@
+#!/usr/bin/python3
+
 import requests
 from Credentials import AlphaVantage_API_key
 
 
-def pricechange(STOCK_NAME, COMPANY_NAME):
+def pricechange(STOCK_NAME):
     '''
     This function spots the stock price fluctuations (increase/decreases)
     between yesterday and the day before yesterday
@@ -17,6 +19,10 @@ def pricechange(STOCK_NAME, COMPANY_NAME):
     }
 
     response = requests.get(STOCK_ENDPOINT, params=stock_params)
+    if 'Information' in response.json():
+        print('The maximum number of requests to Alpha Vantage has been reached.')
+        return None
+
     if 'Error Message' in response.json():
         return None
     data = response.json()["Time Series (Daily)"]

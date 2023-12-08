@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from email.message import EmailMessage
 from email.utils import formataddr
 import requests
@@ -6,12 +7,14 @@ import smtplib
 from Credentials import email_sender, email_password, NEWS_API_KEY
 
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
-# Nasdaq = "https://www.nasdaq.com/market-activity/stocks/screener"
+
+"""
+Example:
 STOCK_NAME = "GOOG"
 COMPANY_NAME = "Alphabet Inc"
+"""
 
-
-def emailsubject(PRICE_CHANGE, FLUCTUATION_SET = 0.2):
+def emailsubject(STOCK_NAME, PRICE_CHANGE, FLUCTUATION_SET = 0.2):
     '''
     Specifies the email subject based on the fluctuation nature
     and the emoji to send along with the notification
@@ -31,7 +34,7 @@ def emailsubject(PRICE_CHANGE, FLUCTUATION_SET = 0.2):
     return EmailSubject
 
 
-def emailbody(EmailSubject, client_name):
+def emailbody(EmailSubject, client_name, COMPANY_NAME):
     '''
     Get News if the fluctuation percentage is greater than the percentage set by the client
     https://newsapi.org/
@@ -84,7 +87,7 @@ def emailbody(EmailSubject, client_name):
         <p style="margin-bottom: 20px; color: #000;">
             Best Regards,<br>STOCKLERTS
         </p>
-    
+
     </body>
     </html>
     """)

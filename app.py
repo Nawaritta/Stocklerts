@@ -1,8 +1,12 @@
+#!/usr/bin/python3
+
 from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from Credentials import SECRETKEY
+from sqlalchemy import func
+
 import os
 
 
@@ -57,9 +61,13 @@ def about():
 @app.route("/register", methods=["GET", "POST"], strict_slashes=False)
 def register():
     if request.method == "POST":
+        if request.form.get('password') != request.form.get('passconfirm'):
+            flash("Passwords do not match. Please try again!")
+            return redirect(url_for('register'))
 
         email = request.form.get('email')
-        result = db.session.execute(db.select(User).where(User.email == email))
+        email_lower = email.lower()
+        result = db.session.execute(db.select(User).where(func.lower(User.email) == email_lower))
 
         # Note, email in db is unique so will only have one result.
         user = result.scalar()
@@ -81,7 +89,8 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
-        return redirect(url_for("profile"))
+        return redirect(url_for('profile', user_id=user_id))
+       # return redirect(url_for("profile"))
 
     return render_template("register.html", logged_in=current_user.is_authenticated)
 
@@ -92,7 +101,8 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        result = db.session.execute(db.select(User).where(User.email == email))
+        email_lower = email.lower()
+        result = db.session.execute(db.select(User).where(func.lower(User.email) == email_lower))
         user = result.scalar()
         # Email doesn't exist or password incorrect.
         if not user:
@@ -103,7 +113,7 @@ def login():
             return redirect(url_for('login'))
         else:
             login_user(user)
-            return redirect(url_for('profile'))
+            return redirect(url_for('profile', user_id=user.id))
 
     return render_template("login.html", logged_in=current_user.is_authenticated)
 
@@ -120,9 +130,9 @@ def load_user(user_id):
     return db.get_or_404(User, user_id)
 
 
-@app.route('/profile', methods=["GET", "POST"], strict_slashes=False)
+@app.route('/profile/<int:user_id>', methods=["GET", "POST"], strict_slashes=False)
 @login_required
-def profile():
+def profile(user_id):
 
     if request.method == "POST":
         email = current_user.email
@@ -139,7 +149,7 @@ def profile():
         if order:
             # Order already exists
             flash("You are already following this stock!")
-            return redirect(url_for('profile'))
+            return redirect(url_for('profile', user_id=user_id))
 
         new_order = Order(
             stock=new_stock,
@@ -149,9 +159,8 @@ def profile():
         db.session.add(new_order)
         db.session.commit()
         flash("Your request has been successfully registered!")
-        return redirect(url_for("profile"))
+        return redirect(url_for('profile', user_id=current_user.id))
 
-    print(current_user.name)
     return render_template("profile.html", name=current_user.name, logged_in=True)
 
 

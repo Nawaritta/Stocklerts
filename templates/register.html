@@ -3,22 +3,27 @@
   {% include "header.html" %}
   <!-- Page Header-->
   <header class="masthead" style="background-image: url('../static/assets/img/register-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-          <div class="page-heading">
-            {% if registered: %}
-                 <h1 style="color: #82EEFD; font-size: 50px;">Your registration was successful!</h1>
-            {% else: %}
-                 <h1 style="color: #82EEFD; font-size: 50px;">Join Us</h1>
-                <br />
-                <span class="subheading" style="color: orange"><b>Sign up today to join our community and stay informed with the latest stock trading updates!</b></span>
-             {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="container position-relative px-4 px-lg-5">
+	  <div class="row gx-4 gx-lg-5 justify-content-center">
+		<div class="col-md-10 col-lg-8 col-xl-7">
+		  <div class="page-heading">
+			{% if registered: %}
+			<h1 style="color: #168212; font-size: 50px;">Your registration was successful!</h1>
+			{% else: %}
+			<h3 style="color: #FFEE58;">Sign up today to join our community and stay informed with the latest stock trading updates!</h3>
+			{% endif %}
+		  </div>
+		</div>
+	  </div>
+	</div>
   </header>
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+         {% for message in messages %}
+             <h3 style="color: #01796F; text-align: center; font-family: 'Helvetica'">{{ message }}</h3>
+         {% endfor %}
+      {% endif %}
+  {% endwith %}
   <main class="mb-4">
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -26,13 +31,14 @@
            <div class="my-5">
                <div class="form-floating">
 	                <h2 style="color: gray; font-family: 'Arial', sans-serif;">Register</h2><br>
-                        <form autocomplete="off"  id="contactForm" name="registration" action="{{ url_for('register') }}" method="post">
-                            <div><input type="text" name="name" placeholder="Name" required="required" /></div>
-                            <div style="padding: 15px 0px"><input type="email" name="email" placeholder="Email" required="required" /></div>
-                            <div><input type="password" name="password" placeholder="Password" required="required" /></div>
-                           <br>
-                            <button type="submit" class="btn btn-primary btn-block btn-large">Sign me up</button>
-                        </form>
+					<form autocomplete="on"  id="contactForm" name="registration" action="{{ url_for('register') }}" method="post">
+					  <div><input type="text" name="name" placeholder="Name" required="required" /></div>
+					  <div style="padding-top: 15px"><input type="email" name="email" placeholder="Email" required="required" /></div>
+					  <div style="padding: 15px 0px"><input type="password" name="password" placeholder="Password" required="required" /></div>
+					  <div><input type="password" name="passconfirm" placeholder="confirm the password" required="required" /></div>
+					  <br>
+					  <button type="submit" class="btn btn-primary btn-block btn-large">Sign me up</button>
+					</form>
                </div>
            </div>
          </div>
@@ -41,11 +47,3 @@
   </main>
   {% include "footer.html" %}
 </html>
-
-
-
-
-
-
-
-
