@@ -30,12 +30,12 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
            <div class="my-5">
                <div class="form-floating">
-	                <h2 style="color: gray; font-family: 'Arial', sans-serif;">Register</h2><br>
+	                <h2 style="color: gray; font-family: 'Arial', sans-serif;">Registration</h2><br>
 					<form autocomplete="on"  id="contactForm" name="registration" action="{{ url_for('register') }}" method="post">
 					  <div><input type="text" name="name" placeholder="Name" required="required" /></div>
 					  <div style="padding-top: 15px"><input type="email" name="email" placeholder="Email" required="required" /></div>
 					  <div style="padding: 15px 0px"><input type="password" name="password" placeholder="Password" required="required" /></div>
-					  <div><input type="password" name="passconfirm" placeholder="confirm the password" required="required" /></div>
+					  <div><input type="password" name="passconfirm" placeholder="Confirm password" required="required" /></div>
 					  <br>
 					  <button type="submit" class="btn btn-primary btn-block btn-large">Sign me up</button>
 					</form>
