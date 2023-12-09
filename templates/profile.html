@@ -1,44 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% include "header.html" %}
-       <!-- Page Header-->
-  <header class="masthead" id="profileheader">
-	<div class="container position-relative px-4 px-lg-5">
-	  <div class="row gx-4 gx-lg-5 justify-content-center">
-		<div class="col-md-10 col-lg-8 col-xl-7">
-		  <div  class="page-heading">
-
-		  </div>
-		</div>
-	  </div>
-	</div>
-  </header>
-        <!-- Main Content-->
-	<div class="container position-relative px-4 px-lg-5">
-       <div class="row gx-4 gx-lg-5 justify-content-center">
-
-        <!-- messages flashed-->
-        <div style="padding: 20px 80px">
-         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <h3 style="color: #01796F; text-align: center; font-family: 'Helvetica'">{{ message }}</h3>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+    {% include "header.html" %}
+    <!-- Page Header-->
+    <header class="masthead" id="profileheader">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading"></div>
+                </div>
+            </div>
         </div>
-        <!-------->
-          <!--Make a GET request to the /download path-->
-          <div class="form-floating">
-              <p><b>Please enter the stock information:</b></p>
-              <form autocomplete="on" action="{{ url_for('profile', user_id=current_user.id) }}" method="post">
-                    <div style="margin-bottom: 30px; padding: 10px 20px"><input style="border: 2px solid rgb(158, 157, 157);" type="text" name="stock" placeholder="Stock symbol" required="required" />
-                    <input style="border: 2px solid rgb(158, 157, 157);" type="text" name="company" placeholder="Company name" required="required" />
-                    <button type="submit" class="btn btn-primary btn-block btn-large" style="margin-left: 30px">Submit</button></div>
-              </form>
-          </div>
-	   </div>
+    </header>
+
+
+    <!-- Main Content-->
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+
+              <!--div style="margin-left: 40rem;" class="image-row">
+                <img src="../static/assets/img/about-bg.jpg" style="width: 600px; height: 80px;">
+              </div-->
+
+            <!-- messages flashed-->
+            <div style="padding: 20px 80px">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <h3 style="color: #01796F; text-align: center; font-family: 'Helvetica'">{{ message }}</h3>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <!-------->
+
+            <!--Make a GET request to the /download path-->
+            <div style="margin-left: 40px; align-items: left" class="table-container">
+                {% if stocks %}
+                    <p><b>Stock prices that you are following:</b></p>
+                    <table class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Company</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stock in stocks %}
+                                <tr>
+                                    <td>{{ stock[1] }}</td>
+                                    <td>{{ stock[2] }}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <a href="{{ url_for('delete_stock', id=stock.id) }}" class="button delete-button">Remove</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p><b>You are not following any stock price yet:</b></p>
+                {% endif %}
+            </div>
+
+            <div class="container">
+                <form autocomplete="on" action="{{ url_for('profile', user_id=current_user.id) }}" method="post">
+                    <div style="margin: 0px auto 40px 150px; padding: 10px 50px">
+                        <input style="border: 2px solid rgb(158, 157, 157);" type="text" name="stock" placeholder="Stock symbol" required="required" />
+                        <input style="margin:10px 0px; border: 2px solid rgb(158, 157, 157);" type="text" name="company" placeholder="Company name" required="required" />
+                        <button type="submit" class="button" style="margin: 20px; padding: 6px 25px;">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-  {% include "footer.html" %}
+    {% include "footer.html" %}
 </html>

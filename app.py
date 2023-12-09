@@ -89,7 +89,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
-        return redirect(url_for('profile', user_id=user_id))
+        return redirect(url_for('profile', user_id=new_user.id))
        # return redirect(url_for("profile"))
 
     return render_template("register.html", logged_in=current_user.is_authenticated)
@@ -133,9 +133,10 @@ def load_user(user_id):
 @app.route('/profile/<int:user_id>', methods=["GET", "POST"], strict_slashes=False)
 @login_required
 def profile(user_id):
+    email = current_user.email
+    stocks = db.session.query(Order.id, Order.stock, Order.company).filter(Order.user_email == email).order_by(Order.stock).all()
 
     if request.method == "POST":
-        email = current_user.email
         new_stock = request.form.get('stock')
         new_company = request.form.get('company')
 
@@ -159,9 +160,20 @@ def profile(user_id):
         db.session.add(new_order)
         db.session.commit()
         flash("Your request has been successfully registered!")
-        return redirect(url_for('profile', user_id=current_user.id))
+        return redirect(url_for('profile', user_id=current_user.id, stocks=stocks))
 
-    return render_template("profile.html", name=current_user.name, logged_in=True)
+    return render_template("profile.html", name=current_user.name, logged_in=True, stocks=stocks)
+
+
+@app.route("/delete")
+def delete_stock():
+ #  stocks = db.session.query(Order.stock, Order.company).filter(Order.user_email == email).order_by(Order.stock).all()
+    stocks = request.args.get("orders")
+    stock_id = request.args.get("id")
+    stock = db.get_or_404(Order, stock_id)
+    db.session.delete(stock)
+    db.session.commit()
+    return redirect(url_for('profile', user_id=current_user.id, stocks=stocks))
 
 
 if __name__ == '__main__':
