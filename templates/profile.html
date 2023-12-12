@@ -3,40 +3,29 @@
     {% include "header.html" %}
     <!-- Page Header-->
     <header class="masthead" id="profileheader">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="page-heading"></div>
-                </div>
-            </div>
-        </div>
     </header>
 
+         <div style="display: flex" class="container position-relative px-4 px-lg-5">
+                    <img style="border-radius:50%; border: 3px solid gray; width: 220px; height: 200px;" src="../static/assets/img/monitoring.gif"></img>
+
+                  {% if stocks %}
+                            <h2 style="margin-left:40px; padding: 80px; 40px" class="post-title">Stock prices that you are following</h2>
+                 {% else %}
+                            <h2 style="margin-left:40px; padding: 80px; 40px" class="post-title">You are not following any stock price </h2>
+                 {% endif %}
+         </div>
 
     <!-- Main Content-->
-    <div class="container position-relative px-4 px-lg-5">
+    <div  style="padding: 0px 20px; background-image: url('../static/assets/img/0.jpg')" class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
 
               <!--div style="margin-left: 40rem;" class="image-row">
                 <img src="../static/assets/img/about-bg.jpg" style="width: 600px; height: 80px;">
               </div-->
 
-            <!-- messages flashed-->
-            <div style="padding: 20px 80px">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <h3 style="color: #01796F; text-align: center; font-family: 'Helvetica'">{{ message }}</h3>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-            </div>
             <!-------->
-
-            <!--Make a GET request to the /download path-->
-            <div style="margin-left: 40px; align-items: left" class="table-container">
+        <div style="margin-left: 40px; align-items: left" class="table-container">
                 {% if stocks %}
-                    <p><b>Stock prices that you are following:</b></p>
                     <table class="table table-striped table-bordered table-hover table-sm">
                         <thead class="text-center">
                             <tr>
@@ -57,12 +46,18 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                {% else %}
-                    <p><b>You are not following any stock price yet:</b></p>
                 {% endif %}
             </div>
 
             <div class="container">
+                 <!-- messages flashed-->
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h6 style="color: red; margin-left:150px; padding: 0px 50px; font-family: 'Helvetica'">{{ message }}</h6>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                 <form autocomplete="on" action="{{ url_for('profile', user_id=current_user.id) }}" method="post">
                     <div style="margin: 0px auto 40px 150px; padding: 10px 50px">
                         <input style="border: 2px solid rgb(158, 157, 157);" type="text" name="stock" placeholder="Stock symbol" required="required" />
