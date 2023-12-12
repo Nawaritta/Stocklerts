@@ -10938,11 +10938,13 @@ button {
     width: 75%;
     height: 450px;
     list-style: none;
-    b0order-radius: 20px;
     overflow: hidden;
     background-color: transparent;
-    border: 3px solid gray;white;
+
     }
+.rotation .image {
+    border: 3px solid gray;
+ }
 
 .rotation .slogan,
 .rotation .image {
