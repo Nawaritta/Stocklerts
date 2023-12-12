@@ -62,7 +62,7 @@ def about():
 def register():
     if request.method == "POST":
         if request.form.get('password') != request.form.get('passconfirm'):
-            flash("Passwords do not match. Please try again!")
+            flash("Passwords do not match. Please try again!", 'error')
             return redirect(url_for('register'))
 
         email = request.form.get('email')
@@ -73,7 +73,7 @@ def register():
         user = result.scalar()
         if user:
             # User already exists
-            flash("You've already signed up with that email, log in instead!")
+            flash("You've already signed up with that email, log in instead!", 'warning')
             return redirect(url_for('login'))
 
         hash_and_salted_password = generate_password_hash(
@@ -106,10 +106,10 @@ def login():
         user = result.scalar()
         # Email doesn't exist or password incorrect.
         if not user:
-            flash("That email does not exist, please try again.")
+            flash("That email does not exist, please try again.", 'error')
             return redirect(url_for('login'))
         elif not check_password_hash(user.password, password):
-            flash('Password incorrect, please try again.')
+            flash('Password incorrect, please try again.', 'error')
             return redirect(url_for('login'))
         else:
             login_user(user)
@@ -149,7 +149,7 @@ def profile(user_id):
         order = result.scalar()
         if order:
             # Order already exists
-            flash("You are already following this stock!")
+            flash("You are already following this stock!", 'warning')
             return redirect(url_for('profile', user_id=user_id))
 
         new_order = Order(
@@ -159,7 +159,7 @@ def profile(user_id):
         )
         db.session.add(new_order)
         db.session.commit()
-        flash("Your request has been successfully registered!")
+        flash("New stock added successfully!", 'success')
         return redirect(url_for('profile', user_id=current_user.id, stocks=stocks))
 
     return render_template("profile.html", name=current_user.name, logged_in=True, stocks=stocks)
@@ -167,7 +167,6 @@ def profile(user_id):
 
 @app.route("/delete")
 def delete_stock():
- #  stocks = db.session.query(Order.stock, Order.company).filter(Order.user_email == email).order_by(Order.stock).all()
     stocks = request.args.get("orders")
     stock_id = request.args.get("id")
     stock = db.get_or_404(Order, stock_id)

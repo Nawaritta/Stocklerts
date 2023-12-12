@@ -10941,9 +10941,10 @@ button {
     b0order-radius: 20px;
     overflow: hidden;
     background-color: transparent;
-    border: 3px solid white;
+    border: 3px solid gray;white;
     }
 
+.rotation .slogan,
 .rotation .image {
     position: absolute;
     opacity: 0;
@@ -10952,51 +10953,55 @@ button {
 
 .rotation .image:nth-child(1) {
     z-index: 0;
-    animation: fade 22s linear infinite;
+    animation: fade 30s linear infinite;
 }
 
 .rotation .image:nth-child(2) {
     z-index: 1;
-    animation: fade 22s 2s linear infinite;
+    animation: fade 30s 2s linear infinite;
 }
 
 .rotation .image:nth-child(3) {
     z-index: 2;
-    animation: fade 22s 4s linear infinite;
+    animation: fade 30s 4s linear infinite;
 }
 
 .rotation .image:nth-child(4) {
     z-index: 3;
-    animation: fade 22s 6s linear infinite;
+    animation: fade 30s 6s linear infinite;
 }
 
 .rotation .image:nth-child(5) {
     z-index: 4;
-    animation: fade 22s 8s linear infinite;
+    animation: fade 30s 8s linear infinite;
 }
 
 .rotation .image:nth-child(6) {
     z-index: 5;
-    animation: fade 22s 10s linear infinite;
+    animation: fade 30s 10s linear infinite;
 }
 
 .rotation .image:nth-child(7) {
     z-index: 6;
-    animation: fade 16s 12s linear infinite;
+    animation: fade 30s 12s linear infinite;
 }
 
 .rotation .image:nth-child(8) {
     z-index: 7;
-    animation: fade 22s 14s linear infinite;
+    animation: fade 30s 14s linear infinite;
 }
 
 .rotation .image:nth-child(9) {
     z-index: 8;
-    animation: fade 22s 16s linear infinite;
+    animation: fade 30s 16s linear infinite;
 }
 .rotation .image:nth-child(10) {
     z-index: 9;
-    animation: fade 22s 18s linear infinite;
+    animation: fade 30s 18s linear infinite;
+}
+.rotation .slogan:nth-child(11) {
+    z-index: 10;
+    animation: fade 31s 20s linear infinite;
 }
 
 @keyframes fade {
