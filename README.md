@@ -21,6 +21,8 @@
 Stock trading is the heartbeat of the global economy, where companies, investors, and traders engage in a dynamic dance that shapes 
 the financial landscape. It's a world of constant flux, where market movements can impact fortunes and financial destinies in the blink
 of an eye. For individuals navigating this intricate web, keeping abreast of stock developments is not merely a choice but a necessity.
+
+
 ![](./static/assets/img/readme/readme-2.gif)
 
 ### The Challenge of Staying Informed
