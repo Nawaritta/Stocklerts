@@ -5,10 +5,10 @@ from Credentials import AlphaVantage_API_key
 
 
 def pricechange(STOCK_NAME):
-    '''
+    """
     This function spots the stock price fluctuations (increase/decreases)
     between yesterday and the day before yesterday
-    '''
+    """
     STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 
     # Get yesterday's closing stock price

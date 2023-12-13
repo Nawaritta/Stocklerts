@@ -14,11 +14,12 @@ STOCK_NAME = "GOOG"
 COMPANY_NAME = "Alphabet Inc"
 """
 
-def emailsubject(STOCK_NAME, PRICE_CHANGE, FLUCTUATION_SET = 0.2):
-    '''
+
+def emailsubject(STOCK_NAME, PRICE_CHANGE, FLUCTUATION_SET=0.2):
+    """
     Specifies the email subject based on the fluctuation nature
     and the emoji to send along with the notification
-    '''
+    """
     if PRICE_CHANGE == None:
         return
     EmailSubject = None
@@ -35,11 +36,11 @@ def emailsubject(STOCK_NAME, PRICE_CHANGE, FLUCTUATION_SET = 0.2):
 
 
 def emailbody(EmailSubject, client_name, COMPANY_NAME):
-    '''
+    """
     Get News if the fluctuation percentage is greater than the percentage set by the client
     https://newsapi.org/
-    '''
-    EmailBody =(f"""\
+    """
+    EmailBody = (f"""\
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +61,7 @@ def emailbody(EmailSubject, client_name, COMPANY_NAME):
         specifics of this market movement:
     </p>
 
-    """ )
+    """)
     news_params = {
         "apiKey": NEWS_API_KEY,
         "qInTitle": COMPANY_NAME,
@@ -95,14 +96,14 @@ def emailbody(EmailSubject, client_name, COMPANY_NAME):
 
 
 def sendmail(client, subject, body):
-    '''
+    """
     Sends an email to the client containing relevant news about the stock that the client is following
-    '''
+    """
     email = EmailMessage()
     email['From'] = formataddr(("STOCKLERTS", f"{email_sender}"))
     email['To'] = client
     email['subject'] = subject
-    email.set_content(body,  subtype="html",)
+    email.set_content(body, subtype="html", )
 
     context = ssl.create_default_context()
 

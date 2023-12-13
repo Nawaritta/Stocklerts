@@ -4,8 +4,6 @@ from StockPriceState import pricechange
 from SendMail import emailsubject, emailbody, sendmail
 from app import app
 from app import db, Order, User
-#from datetime import date
-#import pandas as pd
 
 with app.app_context():
     orders = db.session.query(Order).all()
