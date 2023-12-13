@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+"""
+Stocklerts Flask Application
 
-from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory
+This Flask application provides a web platform for users to register, log in, and track stocks. It integrates with a
+database to store user information and stock orders. The application also utilizes Flask-Login for user authentication.
+"""
+from flask import Flask, render_template, request, url_for, redirect, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
@@ -24,6 +29,18 @@ login_manager.init_app(app)
 
 ############  models  ################
 class User(UserMixin, db.Model):
+    """
+      User Model
+
+      Represents a user in the database with associated fields such as email, password, name, and orders.
+
+      Attributes:
+          id (int): Unique identifier for the user.
+          email (str): Email address of the user (unique).
+          password (str): Hashed password of the user.
+          name (str): Name of the user.
+          orders (relationship): One-to-many relationship with the Order model.
+      """
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
@@ -32,6 +49,17 @@ class User(UserMixin, db.Model):
 
 
 class Order(db.Model):
+    """
+       Order Model
+
+       Represents an order in the database with fields such as stock, company, and associated user.
+
+       Attributes:
+           id (int): Unique identifier for the order.
+           stock (str): Stock symbol.
+           company (str): Name of the company associated with the stock.
+           user_email (int): Foreign key referencing the User model (user's email).
+       """
     id = db.Column(db.Integer, primary_key=True)
     stock = db.Column(db.String(255), nullable=False)
     company = db.Column(db.String(255), nullable=False)
@@ -40,11 +68,19 @@ class Order(db.Model):
 
 with app.app_context():
     db.create_all()
-
 ################################
+
 
 @app.route('/', strict_slashes=False)
 def home_page():
+    """
+        Home Page Route
+
+        Renders the home page with a personalized greeting if the user is authenticated.
+
+        Returns:
+            rendered_template: Home page HTML template.
+    """
     if current_user.is_authenticated:
         return render_template("index.html", name=current_user.name, logged_in=current_user.is_authenticated)
 
@@ -53,6 +89,14 @@ def home_page():
 
 @app.route("/about/", strict_slashes=False)
 def about():
+    """
+       About Page Route
+
+       Renders the about page with a personalized greeting if the user is authenticated.
+
+       Returns:
+           rendered_template: About page HTML template.
+    """
     if current_user.is_authenticated:
         return render_template("about.html", name=current_user.name, logged_in=current_user.is_authenticated)
     return render_template("about.html")
@@ -60,6 +104,14 @@ def about():
 
 @app.route("/register", methods=["GET", "POST"], strict_slashes=False)
 def register():
+    """
+       Registration Route
+
+       Handles user registration, form validation, and account creation.
+
+       Returns:
+           rendered_template or redirect: Registration page HTML template or profile page if registration is successful.
+    """
     if request.method == "POST":
         if request.form.get('password') != request.form.get('passconfirm'):
             flash("Passwords do not match. Please try again!", 'error')
@@ -90,13 +142,20 @@ def register():
         db.session.commit()
         login_user(new_user)
         return redirect(url_for('profile', user_id=new_user.id))
-       # return redirect(url_for("profile"))
 
     return render_template("register.html", logged_in=current_user.is_authenticated)
 
 
 @app.route('/login', methods=["GET", "POST"], strict_slashes=False)
 def login():
+    """
+      Login Route
+
+      Handles user login, form validation, and authentication.
+
+      Returns:
+          rendered_template or redirect: Login page HTML template or profile page if login is successful.
+    """
     if request.method == "POST":
         email = request.form.get('email')
         password = request.form.get('password')
@@ -121,20 +180,52 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
+    """
+        Logout Route
+
+        Logs out the current user.
+
+        Returns:
+            redirect: Redirects to the home page.
+    """
     logout_user()
     return redirect(url_for('home_page'))
 
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+        Load User
+
+        Loads a user by their user ID.
+
+        Args:
+            user_id (int): User ID.
+
+        Returns:
+            User or None: User object if found, otherwise None.
+     """
     return db.get_or_404(User, user_id)
 
 
 @app.route('/profile/<int:user_id>', methods=["GET", "POST"], strict_slashes=False)
 @login_required
 def profile(user_id):
+    """
+        Profile Route
+
+        Renders the user profile page with a list of followed stocks. Allows users to add new stocks
+        or delete existing ones.
+
+        Args:
+            user_id (int): User ID.
+
+        Returns:
+            rendered_template or redirect: Profile page HTML template or redirects to the profile page.
+    """
     email = current_user.email
-    stocks = db.session.query(Order.id, Order.stock, Order.company).filter(Order.user_email == email).order_by(Order.stock).all()
+    stocks = db.session.query(Order.id, Order.stock,
+                              Order.company).filter(Order.user_email == email).order_by(Order.stock).all()
 
     if request.method == "POST":
         new_stock = request.form.get('stock')
@@ -167,6 +258,14 @@ def profile(user_id):
 
 @app.route("/delete")
 def delete_stock():
+    """
+        Delete Stock Route
+
+        Deletes a stock from the user's followed stocks.
+
+        Returns:
+            redirect: Redirects to the profile page.
+    """
     stocks = request.args.get("orders")
     stock_id = request.args.get("id")
     stock = db.get_or_404(Order, stock_id)

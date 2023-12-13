@@ -10930,6 +10930,10 @@ button {
     align-items: center;
     background-color: transparent;
 }
+.image img {
+    height: 30rem;
+    width: 60rem;
+}
 
 .rotation {
     position: relative;
@@ -10940,11 +10944,7 @@ button {
     list-style: none;
     overflow: hidden;
     background-color: transparent;
-
     }
-.rotation .image {
-    border: 3px solid gray;
- }
 
 .rotation .slogan,
 .rotation .image {
@@ -10955,55 +10955,56 @@ button {
 
 .rotation .image:nth-child(1) {
     z-index: 0;
-    animation: fade 30s linear infinite;
+    animation: fade 28s linear infinite;
 }
 
 .rotation .image:nth-child(2) {
     z-index: 1;
-    animation: fade 30s 2s linear infinite;
+    animation: fade 28s 2s linear infinite;
 }
 
 .rotation .image:nth-child(3) {
     z-index: 2;
-    animation: fade 30s 4s linear infinite;
+    animation: fade 28s 4s linear infinite;
 }
 
 .rotation .image:nth-child(4) {
     z-index: 3;
-    animation: fade 30s 6s linear infinite;
+    animation: fade 28s 6s linear infinite;
 }
 
 .rotation .image:nth-child(5) {
     z-index: 4;
-    animation: fade 30s 8s linear infinite;
+    animation: fade 28s 8s linear infinite;
 }
 
 .rotation .image:nth-child(6) {
     z-index: 5;
-    animation: fade 30s 10s linear infinite;
+    animation: fade 28s 10s linear infinite;
 }
 
 .rotation .image:nth-child(7) {
     z-index: 6;
-    animation: fade 30s 12s linear infinite;
+    animation: fade 28s 12s linear infinite;
 }
 
 .rotation .image:nth-child(8) {
     z-index: 7;
-    animation: fade 30s 14s linear infinite;
+    animation: fade 28s 14s linear infinite;
 }
 
 .rotation .image:nth-child(9) {
     z-index: 8;
-    animation: fade 30s 16s linear infinite;
+    animation: fade 28s 16s linear infinite;
 }
 .rotation .image:nth-child(10) {
     z-index: 9;
-    animation: fade 30s 18s linear infinite;
+    animation: fade 28s 18s linear infinite;
 }
 .rotation .slogan:nth-child(11) {
     z-index: 10;
-    animation: fade 31s 20s linear infinite;
+    animation: fade 28s 20s linear infinite;
+
 }
 
 @keyframes fade {
