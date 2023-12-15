@@ -251,7 +251,8 @@ a {
 }
 
 a:hover {
-  color: transparent;
+  font-weight: bold;
+  opacity: 0.8;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -8001,7 +8002,8 @@ textarea.form-control-lg {
   border-radius: var(--bs-border-radius-pill) !important;
  }
  .rounded-pill:hover {
-  color: var(--bs-link-hover-color);
+ opacity:0.8;
+  colorp: var(--bs-link-hover-color);
 }
 
 .rounded-top {
@@ -10905,7 +10907,7 @@ button {
 
  .button:hover {
 	 transform: translateZ(55px);
-	 color: transparent;
+	  color: transparent;
 }
  .button:hover:before {
 	 transform: translateZ(-55px);
