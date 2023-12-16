@@ -10636,7 +10636,7 @@ blockquote {
     color: rgba(255, 255, 255, 0.8);
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link {
-    color: #fff;
+    color: #D4FDFB;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
     color: rgba(255, 255, 255, 0.8);
@@ -11036,5 +11036,10 @@ header.masthead:before {
         opacity: 0;
         transform: scale(1.125);
     }
+}
+
+body {
+    background-color:#E4FAF9;
+    background-image: url('../assets/img/body-background.jpg');
 }
 
