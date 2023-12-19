@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 from StockPriceState import pricechange
 from SendMail import emailsubject, emailbody, sendmail
 from app import app
@@ -11,8 +9,6 @@ with app.app_context():
     for order in orders:
         PRICE_CHANGE = pricechange(order.stock)
         user = db.session.query(User).filter(User.email == order.user_email).first()
-        print(user.name)
-        print(order.stock, order.company)
 
         if PRICE_CHANGE is not None:
 

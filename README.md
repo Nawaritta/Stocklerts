@@ -41,8 +41,8 @@ make decisions that align with your financial goals.
 
 ## Project Overview
 
-__Stocklerts__ derives its name from the combination of 'stock trading' and 'news alerts.' As the name suggests, the core idea of the project is to provide users with real-time stock price data and pertinant news, facilitating informed decision-making. In other words,
-the project aims to tackle the challenge of creating a DIY Bloomberg Terminal for individual traders.
+__Stocklerts__ derives its name from the combination of 'stock trading' and 'news alerts.' As the name suggests, the core idea of the project
+is to provide users with real-time stock price data and pertinent news, facilitating informed decision-making. 
 
 The application is not a substitute for professional financial advice, stock market predictions, or comprehensive market analysis services. 
 It does not provide buy/sell recommendations. However, it monitors stock prices, notifies users, and provides news articles not only about 

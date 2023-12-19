@@ -15,7 +15,7 @@ COMPANY_NAME = "Alphabet Inc"
 """
 
 
-def emailsubject(STOCK_NAME, PRICE_CHANGE, FLUCTUATION_SET=0.2):
+def emailsubject(STOCK_NAME, PRICE_CHANGE, FLUCTUATION_SET=0.1):
     """
     Specifies the email subject based on the fluctuation nature
     and the emoji to send along with the notification
@@ -23,7 +23,7 @@ def emailsubject(STOCK_NAME, PRICE_CHANGE, FLUCTUATION_SET=0.2):
     if PRICE_CHANGE == None:
         return
     EmailSubject = None
-    if abs(PRICE_CHANGE["fluctuation"]):
+    if abs(PRICE_CHANGE["fluctuation"] >= FLUCTUATION_SET):
         EmailSubject = STOCK_NAME + ' share price: '
         if PRICE_CHANGE["fluctuation"] > 0:
             EmailSubject += "📈 rose by "
@@ -95,7 +95,7 @@ def emailbody(EmailSubject, client_name, COMPANY_NAME):
     return EmailBody
 
 
-def sendmail(client, subject, body):
+def sendmail(client: object, subject: object, body: object) -> object:
     """
     Sends an email to the client containing relevant news about the stock that the client is following
     """

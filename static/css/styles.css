@@ -3212,7 +3212,7 @@ textarea.form-control-lg {
   color: var(--bs-dropdown-color);
   text-align: left;
   list-style: none;
-  background-color: var(--bs-dropdown-bg);
+  background-color:var(--bs-dropdown-bg);
   background-clip: padding-box;
   border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
 }
@@ -10681,21 +10681,21 @@ footer {
   padding-bottom: 3rem;
 }
 
-header.masthead {
+.masthead {
 	position: relative;
 	margin-bottom: 3rem;
-	padding-top: calc(8rem + 57px);
+	padding-top: calc(8rem + 70px);
 	padding-bottom: 8rem;
 	background: no-repeat bottom center;
-	background-color: black; #172a53;
-	background-size: 95% 86%;
+	background-color:black;
+	background-size: 60% 85%;
 	background-attachment: scroll;
 	box-shadow: 0px 5px 5px 3px #0085A1, 0 0 0 18px #e6e6e6;
 }
-header.masthead:before {
+.masthead:before {
 	content: "";
 	position: absolute;
-	top: 0;
+	top: 50px;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -10764,8 +10764,8 @@ header.masthead .post-heading .meta a {
 }
 @media (min-width: 992px) {
   header.masthead {
-    padding-top: 12.5rem;
-    padding-bottom: 12.5rem;
+    padding-top: 12rem;
+    padding-bottom: 13rem;
   }
   header.masthead .page-heading h1, header.masthead .page-heading .h1,
   header.masthead .site-heading h1,
@@ -10932,9 +10932,11 @@ button {
     background-color: transparent;
 }
 .image img {
-    height: 30rem;
-    width: 60rem;
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
 }
+
 
 .rotation {
     position: relative;
@@ -10947,10 +10949,17 @@ button {
     background-color: transparent;
 
     }
+ ul.rotation li {
+
+ width: 100%;
+ height:100%;
+   }
 
 .slogan {
 background-image: url('../assets/img/home-bg.jpg');
 background-size: cover;
+height:100%;
+
 }
 
 header.masthead:before {
@@ -11019,7 +11028,6 @@ header.masthead:before {
     animation: fade 12s 9s linear infinite;
 }
 
-
 @keyframes fade {
     0% {
         opacity: 0;
@@ -11039,7 +11047,29 @@ header.masthead:before {
 }
 
 body {
-    background-color:#E4FAF9;
+    /* background-color:#E4FAF9;*/
     background-image: url('../assets/img/body-background.jpg');
+}
+
+.hero {
+display: flex;
+flex-direction: column;
+align-items:center;
+justify:center;
+height:100%;
+text-align:center;
+padding-top:100px;
+}
+.hero h1 {
+font-size:55px;
+}
+
+
+@media (max-width:800px) {
+.hero h1 {
+font-size: 40px;
+padding-right:5px;
+padding-left:5px;
+}
 }
 

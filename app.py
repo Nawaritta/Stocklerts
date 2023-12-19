@@ -141,6 +141,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
+        flash("Your registration was successful!")
         return redirect(url_for('profile', user_id=new_user.id))
 
     return render_template("register.html", logged_in=current_user.is_authenticated)
