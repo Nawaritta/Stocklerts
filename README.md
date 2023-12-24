@@ -1,7 +1,7 @@
 # Stocklerts: 
 <h2 align="center"> Stock Trading updates that move as Fast as Your Ambitions</h2>
 
-[Welcome to Stocklerts!](http://stocklerts.tech:5500/)
+[Welcome to Stocklerts!](https://www.stocklerts.tech/)
 =================================
 ![](./static/assets/img/readme/readme-1.jpg)
 
